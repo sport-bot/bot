@@ -4,6 +4,8 @@ from aiogram.filters import Command
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
 
+from bot.keyboards.adminActionsKeyboard import adminActionsKeyboard
+
 from bot.utils.generateKeyboard import generate_training_navigation_buttons
 from bot.utils.generateTrainingSet import generate_training_set
 
@@ -22,6 +24,12 @@ async def send_training(message: Message, state: FSMContext):
 async def show_settings(message: Message):
     await message.answer("Your current settings: ")
 
+
+# add role check middleware
+@router.message(Command("admin"))
+async def add_training(message: Message):
+    # check is_admin
+    await message.answer("Your admin role approved", reply_markup=adminActionsKeyboard)
 
 @router.message(Command("help"))
 async def cmd_help(message: Message):

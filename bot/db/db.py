@@ -1,6 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 # from config import DATABASE_URL
-from bot.db.models.UserModel import Base, User
+from bot.db.models.UserModel import Base
+from bot.db.models.ExerciseModel import Base
 
 DATABASE_URL = "postgresql+asyncpg://postgres:Tos_11235@localhost:5432/fitness_bot"
 

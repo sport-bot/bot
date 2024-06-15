@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, String, ForeignKey, ARRAY, Integer, Float
+from sqlalchemy import BigInteger, String, Integer, Float, Boolean
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 
@@ -17,6 +17,6 @@ class User(Base):
     height: Mapped[int] = mapped_column(Integer)
     fitness_level: Mapped[str] = mapped_column(String(16))
     goal: Mapped[str] = mapped_column(String(16))
-
+    is_admin: Mapped[bool] = mapped_column(Boolean)
 
 
