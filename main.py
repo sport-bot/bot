@@ -1,21 +1,22 @@
-from typing import Final
+
 import asyncio
 from aiogram import Bot, Dispatcher
 
-from bot.handlers.authHandlers import router
+from bot.handlers.authHandlers import router as authRouter
+from bot.handlers.mainHandlers import router as mainRouter
+from bot.handlers.trainingsHandlers import router as trainingsRouter
 from bot.db.db import async_main
-
-
-TOKEN: Final = "6596751567:AAE2SonIff-ZrvSEfmqpP4Hp2v_7dZRJehE"
-
-BOT_USERNAME: Final = "@sportTestty_bot"
+from bot.setup import bot
 
 
 async def main():
     await async_main()
-    bot = Bot(token=TOKEN)
     dp = Dispatcher()
-    dp.include_router(router)
+
+    dp.include_router(authRouter)
+    dp.include_router(mainRouter)
+    dp.include_router(trainingsRouter)
+    
     await dp.start_polling(bot)
 
 

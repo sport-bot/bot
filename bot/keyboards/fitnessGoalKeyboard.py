@@ -6,4 +6,4 @@ fitnessGoalKeyboard = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Weight
                                                 [KeyboardButton(text='Improve Stamina'),
                                                 KeyboardButton(text='Maintenance of Fitness')]],
                            resize_keyboard=True,
-                           input_field_placeholder='Choose your gender')
+                           input_field_placeholder='Choose your fitness goal')

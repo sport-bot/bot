@@ -1,5 +1,5 @@
 from aiogram import F, Router
-from aiogram.types import Message
+from aiogram.types import Message, ReplyKeyboardRemove
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.filters import CommandStart, Command
 from aiogram.fsm.context import FSMContext
@@ -8,6 +8,7 @@ import bot.db.services.UserService as userService
 
 from bot.keyboards.genderKeyboard import genderKeyboard
 from bot.keyboards.fitnessGoalKeyboard import fitnessGoalKeyboard
+from bot.keyboards.mainKeyboard import mainKeyboard
 
 router = Router()
 
@@ -27,7 +28,7 @@ async def cmd_start(message: Message, state: FSMContext):
     user = await userService.get_user(message.from_user.id)
     
     if user:
-        return await message.answer("Welcome back")
+        return await message.answer("Welcome back", reply_markup=mainKeyboard)
     
     await message.answer("Welcome to Fitness Bot! Lets register")
     await state.set_state(Register.name)
@@ -49,7 +50,7 @@ async def register_age(message: Message, state: FSMContext):
 async def register_gender(message: Message, state: FSMContext):
     await state.update_data(gender=message.text)
     await state.set_state(Register.weight)
-    await message.answer('Enter your weight in kilos')
+    await message.answer('Enter your weight in kilos', reply_markup=ReplyKeyboardRemove())
 
 @router.message(Register.weight)
 async def register_weight(message: Message, state: FSMContext):
@@ -92,7 +93,7 @@ async def personalize_goal(message: Message, state: FSMContext):
     data = await state.get_data()
     await message.answer(f'{data["name"]}, {data["age"]}, {data["gender"]}, {data["weight"]}, {data["height"]}, {data["fitness_level"]}, {data["goal"]}')
     await userService.create_user(message.from_user.id, data["name"], data["gender"], int(data["age"]), float(data["weight"]), int(data["height"]), data["fitness_level"], data["goal"])
-    await message.answer("Now you are registered")
+    await message.answer("Now you are registered", reply_markup=mainKeyboard)
     
 
 
