@@ -7,6 +7,7 @@ from aiogram.fsm.context import FSMContext
 import bot.db.services.ExerciseService as exerciseService
 import bot.db.services.MealRecommendationService as mealRecommendationService
 import bot.db.services.MealService as mealService
+import bot.db.services.MotivationFraseService as motivationService
 
 from bot.keyboards.adminActionsKeyboard import adminActionsKeyboard
 from bot.keyboards.mainKeyboard import mainKeyboard
@@ -171,3 +172,27 @@ async def new_meal_carbs(message: Message, state: FSMContext):
     await message.answer(text="Added new meal", reply_markup=adminActionsKeyboard)
     await state.clear()
 
+
+
+class NewMotivationFrase(StatesGroup):
+    text = State()
+    author = State()
+
+@router.message(F.text == "Add motivation frase")
+async def add_motivation_frase(message: Message, state: FSMContext):
+    await state.set_state(NewMotivationFrase.text)
+    await message.answer(text="Enter motivation frase")
+
+@router.message(NewMotivationFrase.text)
+async def new_motivation_frase_text(message: Message, state: FSMContext):
+    await state.update_data(text=message.text)
+    await state.set_state(NewMotivationFrase.author)
+    await message.answer(text='Enter author of frase or "-" if there is no author')
+
+@router.message(NewMotivationFrase.author)
+async def new_motivation_frase_author(message: Message, state: FSMContext):
+    await state.update_data(author=message.text)
+    data = await state.get_data()
+    await motivationService.create_motivation_frase(data["text"], data["author"])
+    await message.answer(text='Added new motivation frase', reply_markup=adminActionsKeyboard)
+    await state.clear()
