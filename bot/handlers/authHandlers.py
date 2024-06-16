@@ -71,16 +71,12 @@ async def personalize_fitness_level(message: Message, state: FSMContext):
 
     fitness_level = ""
 
-    if hours <= 1:
-        fitness_level = "Minimal"
-    elif hours <= 3:
+    if hours <= 3:
         fitness_level = "Low"
     elif hours <= 5:
         fitness_level = "Regular"
-    elif hours <= 7:
-        fitness_level = "High"
     else:
-        fitness_level = "Extrahigh"
+        fitness_level = "High"
     
     await state.update_data(fitness_level=fitness_level)
     await state.set_state(Personalization.goal)
