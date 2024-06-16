@@ -31,5 +31,5 @@ async def send_daily_recommendation():
 
 def start_day_sending():
     scheduler = AsyncIOScheduler(timezone="Europe/Kiev")
-    scheduler.add_job(send_daily_recommendation, trigger="cron", hour=18, minute=30, start_date=datetime.now())
+    scheduler.add_job(send_daily_recommendation, trigger="cron", hour=20, minute=45, start_date=datetime.now())
     scheduler.start()

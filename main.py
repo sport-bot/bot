@@ -6,9 +6,11 @@ from bot.handlers.authHandlers import router as authRouter
 from bot.handlers.mainHandlers import router as mainRouter
 from bot.handlers.trainingsHandlers import router as trainingsRouter
 from bot.handlers.adminHandlers import router as adminRouter
-from bot.db.db import async_main
 from bot.setup import bot
+
+from bot.db.db import async_main
 from bot.utils.dailyMealRecommendation import start_day_sending
+from bot.utils.generateDailyMeals import start_meal_generating
 
 
 async def main():
@@ -16,6 +18,7 @@ async def main():
     dp = Dispatcher()
 
     start_day_sending()
+    start_meal_generating()
 
     dp.include_router(authRouter)
     dp.include_router(mainRouter)
