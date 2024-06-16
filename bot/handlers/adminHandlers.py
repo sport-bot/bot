@@ -6,10 +6,12 @@ from aiogram.fsm.context import FSMContext
 
 import bot.db.services.ExerciseService as exerciseService
 import bot.db.services.MealRecommendationService as mealRecommendationService
+import bot.db.services.MealService as mealService
 
 from bot.keyboards.adminActionsKeyboard import adminActionsKeyboard
 from bot.keyboards.mainKeyboard import mainKeyboard
 from bot.keyboards.fitnessGoalKeyboard import fitnessGoalKeyboard
+from bot.keyboards.mealTimeKeyboard import mealTimeKeyboard
 
 
 router = Router()
@@ -109,3 +111,63 @@ async def new_meal_recommendation_type(message: Message, state: FSMContext):
 @router.message(F.text == "Return to main menu")
 async def return_to_main_menu(message: Message):
     await message.answer(text="You exited admin mode", reply_markup=mainKeyboard)
+
+
+class NewMeal(StatesGroup):
+    name = State()
+    ingredients = State()
+    meal_time = State()
+    calories = State()
+    protein = State()
+    fat = State()
+    carbs = State()
+
+@router.message(F.text == "Add meal")
+async def add_meal(message: Message, state: FSMContext):
+    await state.set_state(NewMeal.name)
+    await message.answer(text="Enter name of meal")
+
+@router.message(NewMeal.name)
+async def new_meal_name(message: Message, state: FSMContext):
+    await state.update_data(name=message.text)
+    await state.set_state(NewMeal.ingredients)
+    await message.answer(text="Enter ingredients separatied by coma")
+
+@router.message(NewMeal.ingredients)
+async def new_meal_ingredients(message: Message, state: FSMContext):
+    await state.update_data(ingredients=message.text)
+    await state.set_state(NewMeal.meal_time)
+    await message.answer(text="Select time of meal", reply_markup=mealTimeKeyboard)
+
+@router.message(NewMeal.meal_time)
+async def new_meal_meal_time(message: Message, state: FSMContext):
+    await state.update_data(meal_time=message.text)
+    await state.set_state(NewMeal.calories)
+    await message.answer(text="Enter calories")
+
+@router.message(NewMeal.calories)
+async def new_meal_calories(message: Message, state: FSMContext):
+    await state.update_data(calories=message.text)
+    await state.set_state(NewMeal.protein)
+    await message.answer(text="Enter proteins")
+
+@router.message(NewMeal.protein)
+async def new_meal_protein(message: Message, state: FSMContext):
+    await state.update_data(protein=message.text)
+    await state.set_state(NewMeal.fat)
+    await message.answer(text="Enter fat")
+
+@router.message(NewMeal.fat)
+async def new_meal_fat(message: Message, state: FSMContext):
+    await state.update_data(fat=message.text)
+    await state.set_state(NewMeal.carbs)
+    await message.answer(text="Enter carbs")
+
+@router.message(NewMeal.carbs)
+async def new_meal_carbs(message: Message, state: FSMContext):
+    await state.update_data(carbs=message.text)
+    data = await state.get_data()
+    await mealService.create_meal(data["name"], data["ingredients"], data["meal_time"], float(data["calories"]), float(data["protein"]), float(data["fat"]), float(data["carbs"]))
+    await message.answer(text="Added new meal", reply_markup=adminActionsKeyboard)
+    await state.clear()
+

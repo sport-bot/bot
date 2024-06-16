@@ -1,5 +1,4 @@
 import random
-import time
 from aiogram.enums.parse_mode import ParseMode
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from datetime import datetime
@@ -12,14 +11,11 @@ import bot.db.services.MealRecommendationService as mealRecommendationService
 import bot.db.services.UserService as userService
 
 def get_random_recommendation(recommendations: list[MealRecommendation], target_type):
-    # Фильтруем рекомендации по типу
     filtered_recommendations = [rec for rec in recommendations if rec.type == target_type]
     
-    # Проверяем, есть ли отфильтрованные рекомендации
     if not filtered_recommendations:
-        return None  # Если нет подходящих рекомендаций, возвращаем None
+        return None
     
-    # Возвращаем случайную рекомендацию из отфильтрованных
     return random.choice(filtered_recommendations)
 
 async def send_daily_recommendation():
