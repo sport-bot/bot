@@ -5,8 +5,11 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
 
 import bot.db.services.ExerciseService as exerciseService
+import bot.db.services.MealRecommendationService as mealRecommendationService
+
 from bot.keyboards.adminActionsKeyboard import adminActionsKeyboard
 from bot.keyboards.mainKeyboard import mainKeyboard
+from bot.keyboards.fitnessGoalKeyboard import fitnessGoalKeyboard
 
 
 router = Router()
@@ -22,7 +25,7 @@ class NewExercise(StatesGroup):
 
 # add role check middleware
 @router.message(F.text == "Add exercise")
-async def add_training(message: Message, state: FSMContext):
+async def add_exercise(message: Message, state: FSMContext):
     await state.set_state(NewExercise.name)
     await message.answer("Enter name of exercise")
 
@@ -69,8 +72,40 @@ async def new_exercise_video_id(message: Message, state: FSMContext):
         data = await state.get_data()
         await exerciseService.create_exercise(data["name"],  data["technik_description"], data["low_level_description"], data["regular_level_description"], data["high_level_description"], data["video_id"], data["type"])
         await message.answer("Added exercise", reply_markup=adminActionsKeyboard)
+        await state.clear()
+
+
+class NewMealRecommendation(StatesGroup):
+    name = State()
+    recommendation = State()
+    type = State()
+
+@router.message(F.text == "Add meal recommendation")
+async def add_meal_recommendation(message: Message, state: FSMContext):
+    await state.set_state(NewMealRecommendation.name)
+    await message.answer(text="Enter name of meal recommendation")
+    
+@router.message(NewMealRecommendation.name)
+async def new_meal_recommendation_name(message: Message, state: FSMContext):
+    await state.update_data(name=message.text)
+    await state.set_state(NewMealRecommendation.recommendation)
+    await message.answer(text="Enter recommendation")
+
+@router.message(NewMealRecommendation.recommendation)
+async def new_meal_recommendation_recommendation(message: Message, state: FSMContext):
+    await state.update_data(recommendation=message.text)
+    await state.set_state(NewMealRecommendation.type)
+    await message.answer(text="Choose for which goal is this recommendation", reply_markup=fitnessGoalKeyboard)
+
+@router.message(NewMealRecommendation.type)
+async def new_meal_recommendation_type(message: Message, state: FSMContext):
+    await state.update_data(type=message.text)
+    data = await state.get_data()
+    await mealRecommendationService.create_meal_recommendation(data["name"], data["recommendation"], data["type"])
+    await state.clear()
+    await message.answer(text="Added new meal recommendation", reply_markup=adminActionsKeyboard)
 
 
 @router.message(F.text == "Return to main menu")
-async def add_training(message: Message):
+async def return_to_main_menu(message: Message):
     await message.answer(text="You exited admin mode", reply_markup=mainKeyboard)

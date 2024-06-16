@@ -2,6 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_
 # from config import DATABASE_URL
 from bot.db.models.UserModel import Base
 from bot.db.models.ExerciseModel import Base
+from bot.db.models.MealRecommendationModel import Base
 
 DATABASE_URL = "postgresql+asyncpg://postgres:Tos_11235@localhost:5432/fitness_bot"
 
