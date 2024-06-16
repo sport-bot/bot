@@ -7,6 +7,9 @@ async def get_user(tg_id: int):
     async with async_session() as session:
         return await session.scalar(select(User).where(User.tg_id == tg_id))
 
+async def get_all_users():
+    async with async_session() as session:
+        return (await session.scalars(select(User))).all()
 
 async def create_user(tg_id: int, name: str, gender: str, age: int, weight: float, height: int, fitness_level: str, goal: str):
     async with async_session() as session:

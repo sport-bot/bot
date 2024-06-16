@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncAttrs
 class Base(AsyncAttrs, DeclarativeBase):
     pass
 
-class MealRecommendationModel(Base):
+class MealRecommendation(Base):
     __tablename__ = 'meal_recommendations'
     
     id: Mapped[int] = mapped_column(primary_key=True)

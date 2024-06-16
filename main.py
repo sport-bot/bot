@@ -8,11 +8,14 @@ from bot.handlers.trainingsHandlers import router as trainingsRouter
 from bot.handlers.adminHandlers import router as adminRouter
 from bot.db.db import async_main
 from bot.setup import bot
+from bot.utils.dailyMealRecommendation import start_day_sending
 
 
 async def main():
     await async_main()
     dp = Dispatcher()
+
+    start_day_sending()
 
     dp.include_router(authRouter)
     dp.include_router(mainRouter)
