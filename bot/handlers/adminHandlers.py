@@ -6,6 +6,7 @@ from aiogram.fsm.context import FSMContext
 
 import bot.db.services.ExerciseService as exerciseService
 from bot.keyboards.adminActionsKeyboard import adminActionsKeyboard
+from bot.keyboards.mainKeyboard import mainKeyboard
 
 
 router = Router()
@@ -69,3 +70,7 @@ async def new_exercise_video_id(message: Message, state: FSMContext):
         await exerciseService.create_exercise(data["name"],  data["technik_description"], data["low_level_description"], data["regular_level_description"], data["high_level_description"], data["video_id"], data["type"])
         await message.answer("Added exercise", reply_markup=adminActionsKeyboard)
 
+
+@router.message(F.text == "Return to main menu")
+async def add_training(message: Message):
+    await message.answer(text="You exited admin mode", reply_markup=mainKeyboard)
