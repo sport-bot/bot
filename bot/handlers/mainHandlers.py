@@ -14,7 +14,11 @@ from bot.keyboards.settingsKeyboard import settingsKeyboard
 from bot.utils.generateKeyboard import generate_training_navigation_buttons
 from bot.utils.generateTrainingSet import generate_training_set
 
+from bot.middlewares.checkSubscription import CheckSubscriptionMiddleware
+
 router = Router()
+
+router.message.middleware(CheckSubscriptionMiddleware())
 
 class Trainings(StatesGroup):
     trainings_str_arr = State()
@@ -49,12 +53,6 @@ Your current settings:
 <b>goal</b>: {user.goal}
 ''', reply_markup=settingsKeyboard, parse_mode=ParseMode.HTML)
 
-
-# add role check middleware
-@router.message(Command("admin"))
-async def add_training(message: Message):
-    # check is_admin
-    await message.answer("Your admin role approved", reply_markup=adminActionsKeyboard)
 
 @router.message(Command("help"))
 async def cmd_help(message: Message):

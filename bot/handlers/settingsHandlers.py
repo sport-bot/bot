@@ -12,7 +12,11 @@ from bot.keyboards.settingsKeyboard import settingsKeyboard
 from bot.keyboards.fitnessGoalKeyboard import fitnessGoalKeyboard
 from bot.keyboards.mainKeyboard import mainKeyboard
 
+from bot.middlewares.checkSubscription import CheckSubscriptionMiddleware
+
 router = Router()
+
+router.message.middleware(CheckSubscriptionMiddleware())
 
 class NewSetting(StatesGroup):
     name = State()

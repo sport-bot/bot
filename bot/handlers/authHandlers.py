@@ -90,6 +90,7 @@ async def personalize_goal(message: Message, state: FSMContext):
     await message.answer(f'{data["name"]}, {data["age"]}, {data["gender"]}, {data["weight"]}, {data["height"]}, {data["fitness_level"]}, {data["goal"]}')
     await userService.create_user(message.from_user.id, data["name"], data["gender"], int(data["age"]), float(data["weight"]), int(data["height"]), data["fitness_level"], data["goal"])
     await message.answer("Now you are registered", reply_markup=mainKeyboard)
+    await message.answer("Your 30 days trial started")
     
 
 

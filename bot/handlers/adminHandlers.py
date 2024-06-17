@@ -14,8 +14,17 @@ from bot.keyboards.mainKeyboard import mainKeyboard
 from bot.keyboards.fitnessGoalKeyboard import fitnessGoalKeyboard
 from bot.keyboards.mealTimeKeyboard import mealTimeKeyboard
 
+from bot.middlewares.checkAdminRole import CheckAdminRoleMiddleware
+
 
 router = Router()
+
+router.message.middleware(CheckAdminRoleMiddleware())
+
+
+@router.message(Command("admin"))
+async def add_training(message: Message):
+    await message.answer("Your admin role approved", reply_markup=adminActionsKeyboard)
 
 class NewExercise(StatesGroup):
     name = State()
@@ -26,7 +35,7 @@ class NewExercise(StatesGroup):
     video_id = State()
     type = State()
 
-# add role check middleware
+
 @router.message(F.text == "Add exercise")
 async def add_exercise(message: Message, state: FSMContext):
     await state.set_state(NewExercise.name)

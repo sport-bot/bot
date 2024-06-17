@@ -10,9 +10,11 @@ from bot.db.models.ExerciseModel import Exercise
 from bot.keyboards.completeTrainingKeyboard import completeTrainingKeyboard
 from bot.keyboards.mainKeyboard import mainKeyboard
 
+from bot.middlewares.checkSubscription import CheckSubscriptionMiddleware
+
 router = Router()
 
-
+router.message.middleware(CheckSubscriptionMiddleware())
 
 @router.callback_query(F.data.startswith("select_training_"))
 async def next_page(callback_query: CallbackQuery, state: FSMContext):
