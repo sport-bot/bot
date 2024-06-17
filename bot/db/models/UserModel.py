@@ -17,6 +17,8 @@ class User(Base):
     height: Mapped[int] = mapped_column(Integer)
     fitness_level: Mapped[str] = mapped_column(String(16))
     goal: Mapped[str] = mapped_column(String(16))
+    free_days_left: Mapped[int] = mapped_column(Integer, default=30)
+    subscription_days_left: Mapped[int] = mapped_column(Integer, default=0)
     is_admin: Mapped[bool] = mapped_column(Boolean)
 
 

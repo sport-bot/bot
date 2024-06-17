@@ -36,3 +36,27 @@ async def update_user(tg_id: str, name: str, gender: str, age: int, weight: floa
         if goal: user.goal = goal
 
         await session.commit()
+
+async def decrease_free_days(tg_id: str):
+    async with async_session() as session:
+        user = await session.scalar(select(User).where(User.tg_id == tg_id))
+
+        if not user:
+            print("User with tg", tg_id, "not found")
+            return None
+        
+        user.free_days_left -= 1
+
+        await session.commit()
+
+async def decrease_subscription_days(tg_id: str):
+    async with async_session() as session:
+        user = await session.scalar(select(User).where(User.tg_id == tg_id))
+
+        if not user:
+            print("User with tg", tg_id, "not found")
+            return None
+        
+        user.subscription_days_left -= 1
+
+        await session.commit()

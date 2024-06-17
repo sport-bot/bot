@@ -7,6 +7,9 @@ from bot.utils.generateKeyboard import generate_training_navigation_buttons
 from bot.setup import bot
 from bot.db.models.ExerciseModel import Exercise
 
+from bot.keyboards.completeTrainingKeyboard import completeTrainingKeyboard
+from bot.keyboards.mainKeyboard import mainKeyboard
+
 router = Router()
 
 
@@ -31,7 +34,11 @@ async def next_page(callback_query: CallbackQuery, state: FSMContext):
 {getattr(exercises[i], f"{level}_level_description")}
 
 ''', parse_mode=ParseMode.HTML)
-        await callback_query.message.answer_video(exercises[i].video_id)
+        if i == len(exercises) - 1:
+            await callback_query.message.answer_video(exercises[i].video_id, reply_markup=completeTrainingKeyboard)
+        else:
+            await callback_query.message.answer_video(exercises[i].video_id)
+
 
 @router.callback_query(F.data.startswith("training_"))
 async def next_page(callback_query: CallbackQuery, state: FSMContext):
@@ -45,4 +52,9 @@ async def next_page(callback_query: CallbackQuery, state: FSMContext):
         parse_mode=ParseMode.HTML
     )
     await callback_query.answer()
+
+@router.callback_query(F.data== "complete_training")
+async def next_page(callback_query: CallbackQuery):
+    await callback_query.answer("You pressed complete training")
+    await callback_query.message.answer("Well done!", reply_markup=mainKeyboard)
 

@@ -13,6 +13,7 @@ from bot.setup import bot
 from bot.db.db import async_main
 from bot.utils.dailyMealRecommendation import start_day_sending
 from bot.utils.generateDailyMeals import start_meal_generating
+from bot.utils.recountSubscriptionAccess import schedule_recount_access
 
 
 async def main():
@@ -21,6 +22,7 @@ async def main():
 
     start_day_sending()
     start_meal_generating()
+    schedule_recount_access()
 
     dp.include_router(authRouter)
     dp.include_router(mainRouter)
