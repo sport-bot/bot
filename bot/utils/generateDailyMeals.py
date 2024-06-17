@@ -58,7 +58,7 @@ You need: {dinner.ingredients}
 ''', parse_mode=ParseMode.HTML)
 
 
-def start_meal_generating():
+def schedule_daily_meals():
     scheduler = AsyncIOScheduler(timezone="Europe/Kiev")
-    scheduler.add_job(send_daily_meals, trigger="cron", hour=20, minute=44, start_date=datetime.now())
+    scheduler.add_job(send_daily_meals, trigger="cron", hour=9, minute=00, start_date=datetime.now())
     scheduler.start()

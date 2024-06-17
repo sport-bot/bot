@@ -11,18 +11,20 @@ from bot.handlers.settingsHandlers import router as settingseRouter
 from bot.setup import bot
 
 from bot.db.db import async_main
-from bot.utils.dailyMealRecommendation import start_day_sending
-from bot.utils.generateDailyMeals import start_meal_generating
+from bot.utils.dailyMealRecommendation import schedule_daily_meal_recommendation
+from bot.utils.generateDailyMeals import schedule_daily_meals
 from bot.utils.recountSubscriptionAccess import schedule_recount_access
+from bot.utils.randomiseMotivationFrase import schedule_daily_motivation
 
 
 async def main():
     await async_main()
     dp = Dispatcher()
 
-    start_day_sending()
-    start_meal_generating()
+    schedule_daily_meal_recommendation()
+    schedule_daily_meals()
     schedule_recount_access()
+    schedule_daily_motivation()
 
     dp.include_router(authRouter)
     dp.include_router(mainRouter)
