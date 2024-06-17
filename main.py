@@ -6,6 +6,8 @@ from bot.handlers.authHandlers import router as authRouter
 from bot.handlers.mainHandlers import router as mainRouter
 from bot.handlers.trainingsHandlers import router as trainingsRouter
 from bot.handlers.adminHandlers import router as adminRouter
+from bot.handlers.settingsHandlers import router as settingseRouter
+
 from bot.setup import bot
 
 from bot.db.db import async_main
@@ -24,6 +26,7 @@ async def main():
     dp.include_router(mainRouter)
     dp.include_router(trainingsRouter)
     dp.include_router(adminRouter)
+    dp.include_router(settingseRouter)
     
     await dp.start_polling(bot)
 

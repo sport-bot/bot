@@ -5,7 +5,11 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
 from aiogram.enums.parse_mode import ParseMode
 
+import bot.db.services.UserService as userService
+from bot.db.models.UserModel import User 
+
 from bot.keyboards.adminActionsKeyboard import adminActionsKeyboard
+from bot.keyboards.settingsKeyboard import settingsKeyboard
 
 from bot.utils.generateKeyboard import generate_training_navigation_buttons
 from bot.utils.generateTrainingSet import generate_training_set
@@ -34,7 +38,16 @@ async def send_training(message: Message, state: FSMContext):
 
 @router.message(F.text == "Settings")
 async def show_settings(message: Message):
-    await message.answer("Your current settings: ")
+    user: User = await userService.get_user(message.from_user.id)
+    await message.answer(f'''
+Your current settings:
+<b>name</b>: {user.name}
+<b>age</b>: {user.age}
+<b>weight</b>: {user.weight}
+<b>height</b>: {user.height}
+<b>fitness level</b>: {user.fitness_level}
+<b>goal</b>: {user.goal}
+''', reply_markup=settingsKeyboard, parse_mode=ParseMode.HTML)
 
 
 # add role check middleware

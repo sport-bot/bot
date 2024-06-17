@@ -27,12 +27,12 @@ async def update_user(tg_id: str, name: str, gender: str, age: int, weight: floa
             print("User with tg", tg_id, "not found")
             return None
 
-        user.name = name
-        user.gender = gender
-        user.age = age
-        user.weight = weight
-        user.height = height
-        user.fitness_level = fitness_level
-        user.goal = goal
+        if name: user.name = name
+        if gender: user.gender = gender
+        if age: user.age = age
+        if weight: user.weight = weight
+        if height: user.height = height
+        if fitness_level: user.fitness_level = fitness_level
+        if goal: user.goal = goal
 
         await session.commit()
