@@ -10,7 +10,7 @@ from aiogram.utils.i18n import lazy_gettext as __
 import bot.db.services.UserService as userService
 from bot.db.models.UserModel import User 
 
-from bot.keyboards.adminActionsKeyboard import adminActionsKeyboard
+from bot.keyboards.mainKeyboard import mainKeyboard
 from bot.keyboards.settingsKeyboard import settingsKeyboard
 
 from bot.utils.generateKeyboard import generate_training_navigation_buttons
@@ -59,3 +59,7 @@ Your current settings:
 @router.message(Command("help"))
 async def cmd_help(message: Message):
     await message.answer("You pressed help btn!")
+
+@router.message(Command("menu"))
+async def cmd_help(message: Message):
+    await message.answer("Menu", reply_markup=mainKeyboard())

@@ -3,9 +3,9 @@ from bot.db.models.MealRecommendationModel import MealRecommendation
 from sqlalchemy import select, update, delete
 
 
-async def create_meal_recommendation(name: str, recommendation: str, type: str):
+async def create_meal_recommendation(name: str, recommendation: str, type: str, lang: str):
     async with async_session() as session:
-        session.add(MealRecommendation(name=name, recommendation=recommendation, type=type))
+        session.add(MealRecommendation(name=name, recommendation=recommendation, type=type, lang=lang))
         await session.commit()
 
 async def get_all_recommendations():

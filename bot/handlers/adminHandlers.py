@@ -36,10 +36,17 @@ class NewExercise(StatesGroup):
     high_level_description = State()
     video_id = State()
     type = State()
+    lang = State()
 
 
 @router.message(F.text == __("Add exercise"))
 async def add_exercise(message: Message, state: FSMContext):
+    await state.set_state(NewExercise.lang)
+    await message.answer(_("Choose lang of exercise"))
+
+@router.message(NewExercise.lang)
+async def new_exercise_lang(message: Message, state: FSMContext):
+    await state.update_data(lang=message.text)
     await state.set_state(NewExercise.name)
     await message.answer(_("Enter name of exercise"))
 
@@ -84,7 +91,14 @@ async def new_exercise_video_id(message: Message, state: FSMContext):
     if message.video:
         await state.update_data(video_id=message.video.file_id)
         data = await state.get_data()
-        await exerciseService.create_exercise(data["name"],  data["technik_description"], data["low_level_description"], data["regular_level_description"], data["high_level_description"], data["video_id"], data["type"])
+        await exerciseService.create_exercise(data["name"],  
+                                              data["technik_description"], 
+                                              data["low_level_description"], 
+                                              data["regular_level_description"], 
+                                              data["high_level_description"], 
+                                              data["video_id"], 
+                                              data["type"],
+                                              data["lang"])
         await message.answer(_("Added exercise"), reply_markup=adminActionsKeyboard())
         await state.clear()
 
@@ -93,9 +107,16 @@ class NewMealRecommendation(StatesGroup):
     name = State()
     recommendation = State()
     type = State()
+    lang = State()
 
 @router.message(F.text == __("Add meal recommendation"))
 async def add_meal_recommendation(message: Message, state: FSMContext):
+    await state.set_state(NewMealRecommendation.lang)
+    await message.answer(text=_("Choose lang of meal recomendation"))
+    
+@router.message(NewMealRecommendation.lang)
+async def new_meal_recommendation_lang(message: Message, state: FSMContext):
+    await state.update_data(lang=message.text)
     await state.set_state(NewMealRecommendation.name)
     await message.answer(text=_("Enter name of meal recommendation"))
     
@@ -115,7 +136,7 @@ async def new_meal_recommendation_recommendation(message: Message, state: FSMCon
 async def new_meal_recommendation_type(message: Message, state: FSMContext):
     await state.update_data(type=message.text)
     data = await state.get_data()
-    await mealRecommendationService.create_meal_recommendation(data["name"], data["recommendation"], data["type"])
+    await mealRecommendationService.create_meal_recommendation(data["name"], data["recommendation"], data["type"], data["lang"])
     await state.clear()
     await message.answer(text=_("Added new meal recommendation"), reply_markup=adminActionsKeyboard())
 
@@ -133,9 +154,16 @@ class NewMeal(StatesGroup):
     protein = State()
     fat = State()
     carbs = State()
+    lang = State()
 
 @router.message(F.text == __("Add meal"))
 async def add_meal(message: Message, state: FSMContext):
+    await state.set_state(NewMeal.lang)
+    await message.answer(text=_("Choose lang of meal"))
+
+@router.message(NewMeal.lang)
+async def new_meal_lang(message: Message, state: FSMContext):
+    await state.update_data(lang=message.text)
     await state.set_state(NewMeal.name)
     await message.answer(text=_("Enter name of meal"))
 
@@ -179,7 +207,14 @@ async def new_meal_fat(message: Message, state: FSMContext):
 async def new_meal_carbs(message: Message, state: FSMContext):
     await state.update_data(carbs=message.text)
     data = await state.get_data()
-    await mealService.create_meal(data["name"], data["ingredients"], data["meal_time"], float(data["calories"]), float(data["protein"]), float(data["fat"]), float(data["carbs"]))
+    await mealService.create_meal(data["name"], 
+                                  data["ingredients"], 
+                                  data["meal_time"], 
+                                  float(data["calories"]), 
+                                  float(data["protein"]), 
+                                  float(data["fat"]), 
+                                  float(data["carbs"]),
+                                  data["lang"])
     await message.answer(text=_("Added new meal"), reply_markup=adminActionsKeyboard())
     await state.clear()
 
@@ -188,11 +223,18 @@ async def new_meal_carbs(message: Message, state: FSMContext):
 class NewMotivationFrase(StatesGroup):
     text = State()
     author = State()
+    lang = State()
 
 @router.message(F.text == __("Add motivation frase"))
 async def add_motivation_frase(message: Message, state: FSMContext):
+    await state.set_state(NewMotivationFrase.lang)
+    await message.answer(text=_("Enter lang of frase"))
+
+@router.message(NewMotivationFrase.lang)
+async def new_motivation_frase_lang(message: Message, state: FSMContext):
+    await state.update_data(lang=message.text)
     await state.set_state(NewMotivationFrase.text)
-    await message.answer(text=_("Enter motivation frase"))
+    await message.answer(text=_('Enter motivation frase'))
 
 @router.message(NewMotivationFrase.text)
 async def new_motivation_frase_text(message: Message, state: FSMContext):
@@ -204,6 +246,6 @@ async def new_motivation_frase_text(message: Message, state: FSMContext):
 async def new_motivation_frase_author(message: Message, state: FSMContext):
     await state.update_data(author=message.text)
     data = await state.get_data()
-    await motivationService.create_motivation_frase(data["text"], data["author"])
+    await motivationService.create_motivation_frase(data["text"], data["author"], data["lang"])
     await message.answer(text=_('Added new motivation frase'), reply_markup=adminActionsKeyboard())
     await state.clear()

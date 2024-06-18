@@ -3,9 +3,16 @@ from bot.db.models.MealModel import Meal
 from sqlalchemy import select
 
 
-async def create_meal(name: str, ingredients: str, meal_time: str, calories: float, protein: float, fat: float, carbs: float):
+async def create_meal(name: str, ingredients: str, meal_time: str, calories: float, protein: float, fat: float, carbs: float, lang: str):
     async with async_session() as session:
-        session.add(Meal(name=name, ingredients=ingredients, meal_time=meal_time, calories=calories, protein=protein, fat=fat, carbs=carbs))
+        session.add(Meal(name=name, 
+                         ingredients=ingredients, 
+                         meal_time=meal_time, 
+                         calories=calories, 
+                         protein=protein, 
+                         fat=fat, 
+                         carbs=carbs,
+                         lang=lang))
         await session.commit()
 
 async def get_all():
