@@ -16,3 +16,4 @@ class Meal(Base):
     protein: Mapped[float] = mapped_column(Float, nullable=False)
     fat: Mapped[float] = mapped_column(Float, nullable=False)
     carbs: Mapped[float] = mapped_column(Float, nullable=False)
+    lang: Mapped[str] = mapped_column(String(10), default='en')

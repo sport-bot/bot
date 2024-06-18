@@ -1,6 +1,7 @@
 from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject, Message
 from typing import Callable, Dict, Any, Awaitable
+from aiogram.utils.i18n import gettext as _
 
 import bot.db.services.UserService as userService
 
@@ -15,4 +16,4 @@ class CheckAdminRoleMiddleware(BaseMiddleware):
             result = await handler(event, data)
             return result
         
-        await event.answer("Not supported command")
+        await event.answer(_("Not supported command"))

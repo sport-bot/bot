@@ -1,0 +1,509 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-06-17 22:22+0300\n"
+"PO-Revision-Date: 2024-06-17 22:24+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: bot/handlers/adminHandlers.py:29
+msgid "Your admin role approved"
+msgstr "Роль администратора подтверждена"
+
+#: bot/handlers/adminHandlers.py:44
+msgid "Enter name of exercise"
+msgstr "Введите название упражнения"
+
+#: bot/handlers/adminHandlers.py:50
+msgid "Enter description to exercise"
+msgstr "Введите описание упражнения"
+
+#: bot/handlers/adminHandlers.py:56
+msgid "Describe how many repeats and sets must do low level users"
+msgstr "Опишите как много подходов и повторений должен сделать пользователь с низким уровнем активности"
+
+#: bot/handlers/adminHandlers.py:62
+msgid "Describe how many repeats and sets must do regular level users"
+msgstr "Опишите как много подходов и повторений должен сделать пользователь со средним уровнем активности"
+
+#: bot/handlers/adminHandlers.py:68
+msgid "Describe how many repeats and sets must do high level users"
+msgstr "Опишите как много подходов и повторений должен сделать пользователь с высоким уровнем активности"
+
+#: bot/handlers/adminHandlers.py:74
+msgid "Enter type of exercise (Weight Loss, Muscle Gain, Maintenance of Fitness)"
+msgstr "Введите тип упражнения (Weight Loss, Muscle Gain, Maintenance of Fitness)"
+
+#: bot/handlers/adminHandlers.py:80
+msgid "Send video with example of ex. execution"
+msgstr "Отправьте видео с примером выполнения упражнения"
+
+#: bot/handlers/adminHandlers.py:88
+msgid "Added exercise"
+msgstr "Упражнение добавлено"
+
+#: bot/handlers/adminHandlers.py:100
+msgid "Enter name of meal recommendation"
+msgstr "Введите название для рекомендации"
+
+#: bot/handlers/adminHandlers.py:106
+msgid "Enter recommendation"
+msgstr "Введите рекомендацию"
+
+#: bot/handlers/adminHandlers.py:112
+msgid "Choose for which goal is this recommendation"
+msgstr "Выберите для какой цели подходит рекомендация"
+
+#: bot/handlers/adminHandlers.py:120
+msgid "Added new meal recommendation"
+msgstr "Рекомендация добавлена"
+
+#: bot/handlers/adminHandlers.py:125
+msgid "You exited admin mode"
+msgstr "Вы вышли из режима администратора"
+
+#: bot/handlers/adminHandlers.py:140
+msgid "Enter name of meal"
+msgstr "Введите название блюда"
+
+#: bot/handlers/adminHandlers.py:146
+msgid "Enter ingredients separatied by coma"
+msgstr "Введите ингрединеты через запятую"
+
+#: bot/handlers/adminHandlers.py:152
+msgid "Select time of meal"
+msgstr "Выберите время приема пищи для данного блюда"
+
+#: bot/handlers/adminHandlers.py:158
+msgid "Enter calories"
+msgstr "Введите каллории"
+
+#: bot/handlers/adminHandlers.py:164
+msgid "Enter proteins"
+msgstr "Введите белки"
+
+#: bot/handlers/adminHandlers.py:170
+msgid "Enter fat"
+msgstr "Введите жиры"
+
+#: bot/handlers/adminHandlers.py:176
+msgid "Enter carbs"
+msgstr "Введите углеводы"
+
+#: bot/handlers/adminHandlers.py:183
+msgid "Added new meal"
+msgstr "Блюдо добавлено"
+
+#: bot/handlers/adminHandlers.py:195
+msgid "Enter motivation frase"
+msgstr "Введите мотивационную фразу"
+
+#: bot/handlers/adminHandlers.py:201
+msgid "Enter author of frase or \"-\" if there is no author"
+msgstr "Введите автора фразы или \"-\" если нет автора"
+
+#: bot/handlers/adminHandlers.py:208
+msgid "Added new motivation frase"
+msgstr "Мотивационная фраза добавлена"
+
+#: bot/handlers/authHandlers.py:32
+msgid "Welcome back"
+msgstr "С возвращением"
+
+#: bot/handlers/authHandlers.py:34
+msgid "Welcome to Fitness Bot! Lets register"
+msgstr "Добро пожаловать в Fitness Bot! Давайте зарегистрируемся"
+
+#: bot/handlers/authHandlers.py:36
+msgid "Enter your name"
+msgstr "Введите ваше имя"
+
+#: bot/handlers/authHandlers.py:42
+msgid "Enter your age"
+msgstr "Введите ваш возраст"
+
+#: bot/handlers/authHandlers.py:48
+msgid "Enter your gender"
+msgstr "Введите ваш пол"
+
+#: bot/handlers/authHandlers.py:54
+msgid "Enter your weight in kilos"
+msgstr "Введите ваш вес в килограммах"
+
+#: bot/handlers/authHandlers.py:60
+msgid "Enter your height in cm"
+msgstr "Введите ваш рост в сантиметрах"
+
+#: bot/handlers/authHandlers.py:67
+msgid "Enter how often do you do sports (hours)"
+msgstr "Укажите как часто вы занимаетесь спортом в неделю (часы)"
+
+#: bot/handlers/authHandlers.py:84
+msgid "Choose your goal"
+msgstr "Выберите ваше цель"
+
+#: bot/handlers/authHandlers.py:93
+msgid "Now you are registered"
+msgstr "Теперь вы зарегистрированы"
+
+#: bot/handlers/authHandlers.py:94
+msgid "Your 30 days trial started"
+msgstr "У вас осталось 30 дней пробного периода"
+
+#: bot/handlers/mainHandlers.py:48
+msgid ""
+"\n"
+"Your current settings:\n"
+"<b>name</b>: {name}\n"
+"<b>age</b>: {age}\n"
+"<b>weight</b>: {weight}\n"
+"<b>height</b>: {height}\n"
+"<b>fitness level</b>: {fitness_level}\n"
+"<b>goal</b>: {goal}\n"
+msgstr ""
+"\n"
+"Ваши текущие настройки:\n"
+"<b>имя</b>: {name}\n"
+"<b>возраст</b>: {age}\n"
+"<b>вес</b>: {weight}\n"
+"<b>рост</b>: {height}\n"
+"<b>уровень физической подготовки</b>: {fitness_level}\n"
+"<b>цель</b>: {goal}\n"
+
+#: bot/handlers/settingsHandlers.py:35
+msgid "Enter new value for name"
+msgstr "Введите новой значение для имени"
+
+#: bot/handlers/settingsHandlers.py:53
+msgid "Name changed"
+msgstr "Имя измененно"
+
+#: bot/handlers/settingsHandlers.py:79
+msgid "Age changed"
+msgstr "Возраст изменен"
+
+#: bot/handlers/settingsHandlers.py:87
+msgid "Enter new value for weight"
+msgstr "Введите новое значение для веса"
+
+#: bot/handlers/settingsHandlers.py:105
+msgid "Weight changed"
+msgstr "Вес изменен"
+
+#: bot/handlers/settingsHandlers.py:113
+msgid "Enter new value for height"
+msgstr "Введите новое значение для роста"
+
+#: bot/handlers/settingsHandlers.py:131
+msgid "Height changed"
+msgstr "Рост изменен"
+
+#: bot/handlers/settingsHandlers.py:139
+msgid "Enter amount of trainings per week"
+msgstr "Введите количество тренировок в неделю"
+
+#: bot/handlers/settingsHandlers.py:168 bot/handlers/settingsHandlers.py:195
+msgid "Fitness level changed"
+msgstr "Уровень физической подготовки изменен"
+
+#: bot/handlers/settingsHandlers.py:176
+msgid "Choose new goal"
+msgstr "Выберите новую цель"
+
+#: bot/handlers/settingsHandlers.py:203
+msgid "Choose prefered language"
+msgstr "Выберете предпочитаемый язык"
+
+#: bot/handlers/settingsHandlers.py:222
+msgid "Language changed"
+msgstr "Язык изменен"
+
+#: bot/handlers/settingsHandlers.py:229
+msgid "Choose option"
+msgstr "Выберите опцию"
+
+#: bot/handlers/trainingsHandlers.py:25
+msgid "You selected training #{training_number}"
+msgstr "Вы выбрали тренировку #"
+
+#: bot/handlers/trainingsHandlers.py:31
+msgid ""
+"\n"
+"<b>Exersice #{tr_num} - {name}</b>\n"
+"\n"
+"<b>Desctiption</b>\n"
+"\n"
+"{tech_desc}\n"
+"\n"
+"{getattr(exercises[i], f\"{level}_level_description\")}\n"
+"\n"
+msgstr ""
+"\n"
+"<b>Упражнение #{tr_num} - {name}</b>\n"
+"\n"
+"<b>Описание</b>\n"
+"\n"
+"{tech_desc}\n"
+"\n"
+"{getattr(exercises[i], f\"{level}_level_description\")}\n"
+"\n"
+
+#: bot/handlers/trainingsHandlers.py:62
+msgid "You pressed complete training"
+msgstr "Вы нажали завершить тренировку
+
+#: bot/handlers/trainingsHandlers.py:63
+msgid "Well done!"
+msgstr "Хорошая работа!"
+
+#: bot/keyboards/adminActionsKeyboard.py:4
+msgid "Add exercise"
+msgstr "Добавить упражнение"
+
+#: bot/keyboards/adminActionsKeyboard.py:5
+msgid "Add meal"
+msgstr "Добавить блюдо"
+
+#: bot/keyboards/adminActionsKeyboard.py:6
+msgid "Add meal recommendation"
+msgstr "Добавить рекомендацию по питанию"
+
+#: bot/keyboards/adminActionsKeyboard.py:7
+msgid "Add motivation frase"
+msgstr "Добавить мотивационную фразу"
+
+#: bot/keyboards/adminActionsKeyboard.py:8
+msgid "Return to main menu"
+msgstr "Вернуться в главное меню"
+
+#: bot/keyboards/adminActionsKeyboard.py:10
+msgid "Choose admin action"
+msgstr "Выбрать действие администратора"
+
+#: bot/keyboards/completeTrainingKeyboard.py:5
+msgid "Complete training"
+msgstr "Завершить тренировку"
+
+#: bot/keyboards/fitnessGoalKeyboard.py:5 bot/utils/generateTrainingSet.py:12
+msgid "Weight Loss"
+msgstr "Сброс веса"
+
+#: bot/keyboards/fitnessGoalKeyboard.py:6 bot/utils/generateTrainingSet.py:12
+msgid "Muscle Gain"
+msgstr "Мышечный набор"
+
+#: bot/keyboards/fitnessGoalKeyboard.py:7 bot/utils/generateTrainingSet.py:12
+msgid "Improve Stamina"
+msgstr "Улучшить выносливость"
+
+#: bot/keyboards/fitnessGoalKeyboard.py:8 bot/utils/generateTrainingSet.py:12
+msgid "Maintenance of Fitness"
+msgstr "Поддержание формы"
+
+#: bot/keyboards/fitnessGoalKeyboard.py:10
+msgid "Choose fitness goal..."
+msgstr "Выберите цель..."
+
+#: bot/keyboards/genderKeyboard.py:5
+msgid "Male"
+msgstr "Мужчина"
+
+#: bot/keyboards/genderKeyboard.py:6
+msgid "Female"
+msgstr "Женщина"
+
+#: bot/keyboards/genderKeyboard.py:7
+msgid "Non-binary"
+msgstr "Не бинарный"
+
+#: bot/keyboards/genderKeyboard.py:8
+msgid "Don`t specify"
+msgstr "Не указывать"
+
+#: bot/keyboards/genderKeyboard.py:10
+msgid "Choose your gender"
+msgstr "Выберите ваш пол"
+
+#: bot/keyboards/mainKeyboard.py:5
+msgid "Receive a training"
+msgstr "Получить тренировку"
+
+#: bot/keyboards/mainKeyboard.py:6
+msgid "Settings"
+msgstr "Настройки"
+
+#: bot/keyboards/mainKeyboard.py:8
+msgid "Choose action"
+msgstr "Выберите действие"
+
+#: bot/keyboards/mealTimeKeyboard.py:5
+msgid "Breakfast"
+msgstr "Завтрак"
+
+#: bot/keyboards/mealTimeKeyboard.py:6
+msgid "Lunch"
+msgstr "Обед"
+
+#: bot/keyboards/mealTimeKeyboard.py:7
+msgid "Dinner"
+msgstr "Ужин"
+
+#: bot/keyboards/mealTimeKeyboard.py:9
+msgid "Choose meal time..."
+msgstr "Выберите время приема пищи"
+
+#: bot/keyboards/settingsKeyboard.py:5
+msgid "Change name"
+msgstr "Изменить имя"
+
+#: bot/keyboards/settingsKeyboard.py:6
+msgid "Change age"
+msgstr "Изменить возраст"
+
+#: bot/keyboards/settingsKeyboard.py:7
+msgid "Change weight"
+msgstr "Изменить вес"
+
+#: bot/keyboards/settingsKeyboard.py:8
+msgid "Change height"
+msgstr "Изменить рост"
+
+#: bot/keyboards/settingsKeyboard.py:9
+msgid "Change fitness lvl"
+msgstr "Изменить уровень физической подготовки"
+
+#: bot/keyboards/settingsKeyboard.py:10
+msgid "Change goal"
+msgstr "Изменить цель"
+
+#: bot/keyboards/settingsKeyboard.py:11
+msgid "⬅️ Back to main menu"
+msgstr "⬅️ Назад к главному меню"
+
+#: bot/keyboards/settingsKeyboard.py:12
+msgid "Change language"
+msgstr "Изменить язык"
+
+#: bot/keyboards/settingsKeyboard.py:14
+msgid "Choose settings..."
+msgstr "Выберите настройку"
+
+#: bot/middlewares/checkAdminRole.py:19
+msgid "Not supported command"
+msgstr "Не поддерживаемая команда"
+
+#: bot/middlewares/checkSubscription.py:19
+msgid "Your subscription expired"
+msgstr "Ваша подписка истекла"
+
+#: bot/utils/generateDailyMeals.py:31
+msgid ""
+"\n"
+"<b>Breakfast - {breakfast_name}</b>\n"
+"\n"
+"You need: {breakfast_ingredients}\n"
+"\n"
+"<i>Protein:</i> {breakfast_protein}\n"
+"<i>Fat:</i> {breakfast_fat}\n"
+"<i>Carbs:</i> {breakfast_carbs}\n"
+"<b>Total: {breakfast_calories} cal</b>\n"
+"\n"
+"\n"
+"<b>Lunch - {lunch_name}</b>\n"
+"\n"
+"You need: {lunch_ingredients}\n"
+"\n"
+"<i>Protein:</i> {lunch_protein}\n"
+"<i>Fat:</i> {lunch_fat}\n"
+"<i>Carbs:</i> {lunch_carbs}\n"
+"<b>Total: {lunch_calories} cal</b>\n"
+"\n"
+"\n"
+"<b>Dinner - {dinner_name}</b>\n"
+"\n"
+"You need: {dinner_ingredients}\n"
+"\n"
+"<i>Protein:</i> {dinner_protein}\n"
+"<i>Fat:</i> {dinner_fat}\n"
+"<i>Carbs:</i> {dinner_carbs}\n"
+"<b>Total: {dinner_calories} cal</b>\n"
+msgstr ""
+"\n"
+"<b>Завтрак - {breakfast_name}</b>\n"
+"\n"
+"Вам понадобится: {breakfast_ingredients}\n"
+"\n"
+"<i>Белки:</i> {breakfast_protein}\n"
+"<i>Жиры:</i> {breakfast_fat}\n"
+"<i>Углеводы:</i> {breakfast_carbs}\n"
+"<b>Всего: {breakfast_calories} cal</b>\n"
+"\n"
+"\n"
+"<b>Обед - {lunch_name}</b>\n"
+"\n"
+"Вам понадобится: {lunch_ingredients}\n"
+"\n"
+"<i>Белки:</i> {lunch_protein}\n"
+"<i>Жиры:</i> {lunch_fat}\n"
+"<i>Углеводы:</i> {lunch_carbs}\n"
+"<b>Всего: {lunch_calories} cal</b>\n"
+"\n"
+"\n"
+"<b>Ужин - {dinner_name}</b>\n"
+"\n"
+"Вам понадобится: {dinner_ingredients}\n"
+"\n"
+"<i>Белки:</i> {dinner_protein}\n"
+"<i>Жиры:</i> {dinner_fat}\n"
+"<i>Углеводы:</i> {dinner_carbs}\n"
+"<b>Всего: {dinner_calories} cal</b>\n"
+
+#: bot/utils/generateKeyboard.py:11
+msgid "Select"
+msgstr "Выбрать"
+
+#: bot/utils/generateTraining.py:8
+msgid "Training #{index} ({type})"
+msgstr "Тренировка #{index} ({type})"
+
+#: bot/utils/generateTraining.py:15
+msgid ""
+"\n"
+"\n"
+"<b>Exersice #{i} - {exercises_arr[i].name}</b>\n"
+"\n"
+"{desk}\n"
+msgstr ""
+"\n"
+"\n"
+"<b>Упражнение #{i} - {exercises_arr[i].name}</b>\n"
+"\n"
+"{desk}\n"
+
+#: bot/utils/randomiseMotivationFrase.py:23
+msgid ""
+"\n"
+"Keep goind to your goal\n"
+"                               \n"
+"<i>\"{text}\"</i>\n"
+"<b>{author}</b>\n"
+msgstr ""
+"\n"
+"Продолжайте в том же духе\n"
+"                               \n"
+"<i>\"{text}\"</i>\n"
+"<b>{author}</b>\n"
+

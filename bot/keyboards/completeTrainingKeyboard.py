@@ -1,6 +1,10 @@
-from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton,
-                           InlineKeyboardMarkup, InlineKeyboardButton)
+from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram.utils.i18n import gettext as _
 
-completeTrainingKeyboard = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text='Complete training', callback_data='complete_training')],
-])
+
+def completeTrainingKeyboard():
+    keyboardBuilder = InlineKeyboardBuilder()
+    
+    keyboardBuilder.button(text=_("Complete training", callback_data="complete_training"))
+
+    return keyboardBuilder.as_markup()

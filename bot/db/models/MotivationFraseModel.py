@@ -11,4 +11,5 @@ class MotivationFrase(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     text: Mapped[str] = mapped_column(String)
     author: Mapped[str] = mapped_column(String(100), nullable=True)
+    lang: Mapped[str] = mapped_column(String(10), default='en')
     

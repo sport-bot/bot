@@ -16,3 +16,4 @@ class Exercise(Base):
     high_level_description: Mapped[str] = mapped_column(String(250), nullable=True)
     video_id: Mapped[str] = mapped_column(String(100), nullable=True)
     type: Mapped[str] = mapped_column(String(20))
+    lang: Mapped[str] = mapped_column(String(10), default='en')

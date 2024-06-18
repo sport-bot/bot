@@ -9,13 +9,14 @@ class User(Base):
     __tablename__ = 'users'
     
     id: Mapped[int] = mapped_column(primary_key=True)
-    tg_id = mapped_column(BigInteger)
+    tg_id: Mapped[str] = mapped_column(BigInteger, index=True)
     name: Mapped[str] = mapped_column(String(50))
     gender: Mapped[str] = mapped_column(String(10))
     age: Mapped[int] = mapped_column(Integer)
     weight: Mapped[float] = mapped_column(Float)
     height: Mapped[int] = mapped_column(Integer)
     fitness_level: Mapped[str] = mapped_column(String(16))
+    lang: Mapped[str] = mapped_column(String(10), default="en")
     goal: Mapped[str] = mapped_column(String(16))
     free_days_left: Mapped[int] = mapped_column(Integer, default=30)
     subscription_days_left: Mapped[int] = mapped_column(Integer, default=0)

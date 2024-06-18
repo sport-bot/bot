@@ -2,6 +2,7 @@ import random
 from aiogram.enums.parse_mode import ParseMode
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from datetime import datetime
+from aiogram.utils.i18n import gettext as _
 
 from bot.setup import bot
 from bot.db.models.UserModel import User
@@ -26,7 +27,7 @@ async def send_daily_recommendation():
 
     for i in range(len(users)):
         recommendation: MealRecommendation = get_random_recommendation(meal_recommendations, users[i].goal)
-        await bot.send_message(chat_id=users[i].tg_id, text=f"{recommendation.name}:\n<b>{recommendation.recommendation}</b>", parse_mode=ParseMode.HTML)
+        await bot.send_message(chat_id=users[i].tg_id, text="{name}:\n<b>{recommendation}</b>".format(name=recommendation.name, recommendation=recommendation.recommendation), parse_mode=ParseMode.HTML)
 
 
 def schedule_daily_meal_recommendation():

@@ -1,6 +1,7 @@
 from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject, Message
 from typing import Callable, Dict, Any, Awaitable
+from aiogram.utils.i18n import gettext as _
 
 import bot.db.services.UserService as userService
 
@@ -15,4 +16,4 @@ class CheckSubscriptionMiddleware(BaseMiddleware):
             result = await handler(event, data)
             return result
         
-        await event.answer("Your subscription expired")
+        await event.answer(_("Your subscription expired"))

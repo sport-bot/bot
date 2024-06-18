@@ -4,6 +4,8 @@ from aiogram.filters import Command
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
 from aiogram.enums.parse_mode import ParseMode
+from aiogram.utils.i18n import gettext as _
+from aiogram.utils.i18n import lazy_gettext as __
 
 import bot.db.services.UserService as userService
 from bot.db.models.UserModel import User 
@@ -25,7 +27,7 @@ class Trainings(StatesGroup):
     trainings = State()
     level = State()
 
-@router.message(F.text == "Receive a training")
+@router.message(F.text == __("Receive a training"))
 async def send_training(message: Message, state: FSMContext):
     await state.set_state(Trainings.trainings_str_arr)
     (trainings_str, trainings, level) = await generate_training_set(message.from_user.id)
@@ -40,18 +42,18 @@ async def send_training(message: Message, state: FSMContext):
         parse_mode=ParseMode.HTML
     )
 
-@router.message(F.text == "Settings")
+@router.message(F.text == __("Settings"))
 async def show_settings(message: Message):
     user: User = await userService.get_user(message.from_user.id)
-    await message.answer(f'''
+    await message.answer(_('''
 Your current settings:
-<b>name</b>: {user.name}
-<b>age</b>: {user.age}
-<b>weight</b>: {user.weight}
-<b>height</b>: {user.height}
-<b>fitness level</b>: {user.fitness_level}
-<b>goal</b>: {user.goal}
-''', reply_markup=settingsKeyboard, parse_mode=ParseMode.HTML)
+<b>name</b>: {name}
+<b>age</b>: {age}
+<b>weight</b>: {weight}
+<b>height</b>: {height}
+<b>fitness level</b>: {fitness_level}
+<b>goal</b>: {goal}
+''').format(name=user.name, age=user.age, weight=user.weight, height=user.height, fitness_level=user.fitness_level, goal=user.goal), reply_markup=settingsKeyboard(), parse_mode=ParseMode.HTML)
 
 
 @router.message(Command("help"))

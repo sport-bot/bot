@@ -2,6 +2,8 @@ from aiogram import F, Router
 from aiogram.types import CallbackQuery
 from aiogram.fsm.context import FSMContext
 from aiogram.enums.parse_mode import ParseMode
+from aiogram.utils.i18n import gettext as _
+from aiogram.utils.i18n import lazy_gettext as __
 
 from bot.utils.generateKeyboard import generate_training_navigation_buttons
 from bot.setup import bot
@@ -20,24 +22,24 @@ router.message.middleware(CheckSubscriptionMiddleware())
 async def next_page(callback_query: CallbackQuery, state: FSMContext):
     index = int(callback_query.data.split('_')[2])
 
-    await callback_query.answer(text=f'You selected training #{index+1}')
+    await callback_query.answer(text=_('You selected training #{training_number}').format(training_number=index+1))
 
     exercises: list[Exercise] = (await state.get_data())['trainings'][index]
     level = (await state.get_data())['level']
 
     for i in range(len(exercises)):
-        await callback_query.message.answer(text=f'''
-<b>Exersice #{i + 1} - {exercises[i].name}</b>
+        await callback_query.message.answer(text=_('''
+<b>Exersice #{tr_num} - {name}</b>
 
 <b>Desctiption</b>
 
-{exercises[i].technik_description}
+{tech_desc}
 
-{getattr(exercises[i], f"{level}_level_description")}
+{level_desk}
 
-''', parse_mode=ParseMode.HTML)
+''').format(tr_num=i+1, name=exercises[i].name, tech_desc=exercises[i].technik_description, level_desk=getattr(exercises[i], f"{level}_level_description")), parse_mode=ParseMode.HTML)
         if i == len(exercises) - 1:
-            await callback_query.message.answer_video(exercises[i].video_id, reply_markup=completeTrainingKeyboard)
+            await callback_query.message.answer_video(exercises[i].video_id, reply_markup=completeTrainingKeyboard())
         else:
             await callback_query.message.answer_video(exercises[i].video_id)
 
@@ -55,8 +57,8 @@ async def next_page(callback_query: CallbackQuery, state: FSMContext):
     )
     await callback_query.answer()
 
-@router.callback_query(F.data== "complete_training")
+@router.callback_query(F.data== __("complete_training"))
 async def next_page(callback_query: CallbackQuery):
-    await callback_query.answer("You pressed complete training")
-    await callback_query.message.answer("Well done!", reply_markup=mainKeyboard)
+    await callback_query.answer(_("You pressed complete training"))
+    await callback_query.message.answer(_("Well done!"), reply_markup=mainKeyboard())
 

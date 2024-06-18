@@ -19,7 +19,7 @@ async def create_user(tg_id: int, name: str, gender: str, age: int, weight: floa
             session.add(User(tg_id=tg_id, name=name, gender=gender, age=age, weight=weight, height=height, fitness_level=fitness_level, goal=goal))
             await session.commit()
 
-async def update_user(tg_id: str, name: str, gender: str, age: int, weight: float, height: int, fitness_level: str, goal: str):
+async def update_user(tg_id: str, name: str, gender: str, age: int, weight: float, height: int, fitness_level: str, goal: str, lang: str):
     async with async_session() as session:
         user = await session.scalar(select(User).where(User.tg_id == tg_id))
 
@@ -34,6 +34,7 @@ async def update_user(tg_id: str, name: str, gender: str, age: int, weight: floa
         if height: user.height = height
         if fitness_level: user.fitness_level = fitness_level
         if goal: user.goal = goal
+        if lang: user.lang = lang
 
         await session.commit()
 

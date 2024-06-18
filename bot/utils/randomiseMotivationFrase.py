@@ -2,6 +2,8 @@ import random
 from aiogram.enums.parse_mode import ParseMode
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from datetime import datetime
+from aiogram.utils.i18n import gettext as _
+
 
 from bot.setup import bot
 from bot.db.models.MotivationFraseModel import MotivationFrase
@@ -18,12 +20,12 @@ async def send_daily_motivation():
 
     for i in range(len(users)):
         motivation_frase: MotivationFrase = random.choice(motivation_frases)
-        await bot.send_message(chat_id=users[i].tg_id, text=f'''
+        await bot.send_message(chat_id=users[i].tg_id, text=_('''
 Keep goind to your goal
                                
-<i>"{motivation_frase.text}"</i>
-<b>{motivation_frase.author}</b>
-''', parse_mode=ParseMode.HTML)
+<i>"{text}"</i>
+<b>{author}</b>
+''').format(text=motivation_frase.text, author=motivation_frase.author), parse_mode=ParseMode.HTML)
 
 
 def schedule_daily_motivation():
