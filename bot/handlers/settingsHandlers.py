@@ -7,13 +7,16 @@ from aiogram.utils.i18n import gettext as _
 from aiogram.utils.i18n import lazy_gettext as __
 
 import bot.db.services.UserService as userService
+import bot.db.services.LanguageService as languageService
 from bot.db.models.UserModel import User 
 
 from bot.keyboards.settingsKeyboard import settingsKeyboard
 from bot.keyboards.fitnessGoalKeyboard import fitnessGoalKeyboard
 from bot.keyboards.mainKeyboard import mainKeyboard
+from bot.keyboards.languageKeyboard import languageKeyboard
 
 from bot.middlewares.checkSubscription import CheckSubscriptionMiddleware
+
 
 router = Router()
 
@@ -199,9 +202,10 @@ async def new_setting_goal(message: Message, state: FSMContext):
 @router.message(F.text == __("Change language"))
 async def change_lang(message: Message, state: FSMContext):
     await state.set_state(NewSetting.lang)
+    langs = await languageService.get_all_languages()
     await message.answer(
         text=_("Choose prefered language"),
-        reply_markup=ReplyKeyboardRemove(),
+        reply_markup=languageKeyboard(langs),
     )
 
 @router.message(NewSetting.lang)
@@ -219,7 +223,7 @@ async def new_setting_lang(message: Message, state: FSMContext):
         goal=None,
         lang=data["lang"]
     )
-    await message.answer(_("Language changed"))
+    await message.answer(_("Language changed"), reply_markup=ReplyKeyboardRemove())
     await state.clear()
 
     

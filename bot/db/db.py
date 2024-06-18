@@ -5,6 +5,7 @@ from bot.db.models.ExerciseModel import Base
 from bot.db.models.MealRecommendationModel import Base
 from bot.db.models.MealModel import Base
 from bot.db.models.MotivationFraseModel import Base
+from bot.db.models.LanguageModel import Base
 
 DATABASE_URL = "postgresql+asyncpg://postgres:Tos_11235@localhost:5432/fitness_bot"
 

@@ -10,11 +10,13 @@ import bot.db.services.ExerciseService as exerciseService
 import bot.db.services.MealRecommendationService as mealRecommendationService
 import bot.db.services.MealService as mealService
 import bot.db.services.MotivationFraseService as motivationService
+import bot.db.services.LanguageService as languageService
 
 from bot.keyboards.adminActionsKeyboard import adminActionsKeyboard
 from bot.keyboards.mainKeyboard import mainKeyboard
 from bot.keyboards.fitnessGoalKeyboard import fitnessGoalKeyboard
 from bot.keyboards.mealTimeKeyboard import mealTimeKeyboard
+from bot.keyboards.languageKeyboard import languageKeyboard
 
 from bot.middlewares.checkAdminRole import CheckAdminRoleMiddleware
 
@@ -41,8 +43,9 @@ class NewExercise(StatesGroup):
 
 @router.message(F.text == __("Add exercise"))
 async def add_exercise(message: Message, state: FSMContext):
+    langs = await languageService.get_all_languages()
     await state.set_state(NewExercise.lang)
-    await message.answer(_("Choose lang of exercise"))
+    await message.answer(_("Choose lang of exercise"), reply_markup=languageKeyboard(langs))
 
 @router.message(NewExercise.lang)
 async def new_exercise_lang(message: Message, state: FSMContext):
@@ -101,6 +104,23 @@ async def new_exercise_video_id(message: Message, state: FSMContext):
                                               data["lang"])
         await message.answer(_("Added exercise"), reply_markup=adminActionsKeyboard())
         await state.clear()
+
+
+class NewLanguage(StatesGroup):
+    code = State()
+
+@router.message(F.text == __("Add new language"))
+async def add_language(message: Message, state: FSMContext):
+    await state.set_state(NewLanguage.code)
+    await message.answer(text=_("Enter lang code"))
+
+@router.message(NewLanguage.code)
+async def new_language_code(message: Message, state: FSMContext):
+    await state.update_data(code=message.text)
+    data = await state.get_data()
+    await languageService.create_language(data["code"])
+    await message.answer(text=_("Added new language"))
+    await state.clear()
 
 
 class NewMealRecommendation(StatesGroup):

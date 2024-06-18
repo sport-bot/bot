@@ -10,9 +10,10 @@ def adminActionsKeyboard():
     keyboardBuilder.button(text=_('Add meal'))
     keyboardBuilder.button(text=_('Add meal recommendation'))
     keyboardBuilder.button(text=_('Add motivation frase'))
+    keyboardBuilder.button(text=_('Add new language'))
     keyboardBuilder.button(text=_('Return to main menu'))
     
-    keyboardBuilder.adjust(1, 1, 1, 1, 1)
+    keyboardBuilder.adjust(1, 1, 1, 1, 1, 1)
 
     builder_markup = keyboardBuilder.as_markup()
     builder_markup.resize_keyboard = True
